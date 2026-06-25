@@ -1,0 +1,80 @@
+---
+import { Button } from "@/components/starwind/button";
+import { Badge } from "@/components/starwind/badge";
+import { Image } from "astro:assets";
+import {
+    Card,
+    CardAction,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/starwind/card";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/starwind/carousel";
+
+import GuildImage from "@/content/projects/guild.png";
+import CraneImage from "@/content/projects/crane.png";
+
+const projects = [
+    {
+        name: "Warcraft Guild",
+        img: GuildImage,
+        description:
+            "A guild website for an online gaming community. Uses Astro and fetches character data daily from the Raider.IO API through a GitHub Actions workflow.",
+        demo_url: "http://localhost:4321",
+    },
+    {
+        name: "In Development",
+        img: CraneImage,
+        description:
+            "I'm currently working on new projects. Check back periodically to see my progress.",
+        demo_url: "#",
+    },
+];
+---
+
+<section
+    id="projects"
+    class="flex items-center justify-center gap-4 min-h-screen"
+>
+    <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
+        <CarouselContent>
+            {
+                projects.map((project, index) => (
+                    <CarouselItem class="md:basis-1/2">
+                        <div class="p-1">
+                            <Card>
+                                <Image
+                                    src={project.img}
+                                    alt={project.name}
+                                    class="aspect-video w-full object-cover"
+                                />
+                                <CardHeader>
+                                    <CardTitle>{project.name}</CardTitle>
+                                </CardHeader>
+                                <CardDescription class="p-6">
+                                    <span>{project.description}</span>
+                                </CardDescription>
+                                <CardFooter class="flex justify-center">
+                                    <CardAction>
+                                        <Button class="bg-white text-black border border-black hover:bg-black hover:text-white">
+                                            View Project
+                                        </Button>
+                                    </CardAction>
+                                </CardFooter>
+                            </Card>
+                        </div>
+                    </CarouselItem>
+                ))
+            }
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+    </Carousel>
+</section>
