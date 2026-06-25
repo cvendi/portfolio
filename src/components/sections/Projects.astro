@@ -1,6 +1,5 @@
 ---
 import { Button } from "@/components/starwind/button";
-import { Badge } from "@/components/starwind/badge";
 import { Image } from "astro:assets";
 import {
     Card,
@@ -46,7 +45,10 @@ const projects = [
 ];
 ---
 
-<section id="projects" class="flex items-center justify-center gap-4">
+<section
+    id="projects"
+    class="flex items-center justify-center gap-4 mt-24 mb-24"
+>
     <div class="w-full max-w-6xl space-y-12">
         <h1 class="text-3xl font-bold text-center">My Projects</h1>
         <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">

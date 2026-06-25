@@ -1,5 +1,4 @@
 ---
-import { Button } from "@/components/starwind/button";
 import {
     Accordion,
     AccordionContent,
@@ -8,26 +7,26 @@ import {
 } from "@/components/starwind/accordion";
 
 import { Image } from "astro:assets";
-import { Sparkles } from "@lucide/astro";
 import { CircleUserRound } from "@lucide/astro";
-import KeyboardImage from "@/assets/keyboard.png";
+import JupiterImage from "@/assets/jupiter.png";
 import CodyImage from "@/assets/cody.jpg";
 ---
 
 <section
     id="hero"
-    class="flex flex-col max-w-6xl mx-auto p-6 space-y-12 min-h-screen"
+    class="flex flex-col max-w-6xl mx-auto p-6 space-y-12 md:mt-24 min-h-screen"
 >
     <div class="flex flex-col md:flex-row items-center gap-8">
-        <h1 class="text-center md:text-left text-2xl md:text-6xl md:flex-1">
-            I build fast, modern websites with Astro and Tailwind
+        <h1 class="text-center md:text-left text-4xl md:text-6xl md:flex-1">
+            I'm a new developer building fast, modern websites with Astro
         </h1>
         <Image
-            src={KeyboardImage}
-            alt="keyboard"
+            src={JupiterImage}
+            alt="Jupiter"
             class="w-3/4 md:w-2/5 rounded-lg shadow-lg"
         />
     </div>
+    <hr class="max-w-6xl mt-24" />
     <div
         id="about"
         class="flex flex-col md:flex-row h-full items-center md:items-start gap-8 mt-24"
@@ -57,9 +56,8 @@ import CodyImage from "@/assets/cody.jpg";
                     >What do you do?</AccordionTrigger
                 >
                 <AccordionContent>
-                    I'm building fast, modern websites using Astro & Tailwind,
-                    the same technologies that power the websites used by some
-                    of the world's top companies.
+                    I'm building fast, modern websites using Astro, a web
+                    framework designed for speed and simplicity.
                 </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3">
@@ -75,15 +73,15 @@ import CodyImage from "@/assets/cody.jpg";
                     >Why should I choose you to make my website?</AccordionTrigger
                 >
                 <AccordionContent>
-                    I bring years of hands-on Linux experience and a
-                    security-first mindset, including hands-on security
-                    coursework through <a
-                        href="https://hackthebox.com/"
+                    I've spent years working with Linux, experimenting with web
+                    technologies, and building a security-first mindset,
+                    including hands-on penetration testing education through <a
+                        href="https://academy.hackthebox.com/"
                         target="_blank"
                         rel="noreferrer"
-                        class="text-green-500">Hack the Box</a
-                    >, to every project. I'll work with you to create the
-                    website you truly want and need, at a fair price.
+                        class="text-green-500 hover:text-green-700 hover:underline"
+                        >Hack The Box Academy</a
+                    >. I'll work with you to create a fast, secure website.
                 </AccordionContent>
             </AccordionItem>
         </Accordion>
