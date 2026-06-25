@@ -1,0 +1,27 @@
+---
+import { Button } from "@/components/starwind/button";
+import { Input } from "@/components/starwind/input";
+import { Send } from "@lucide/astro";
+---
+
+<section
+    id="contact"
+    class="flex flex-col items-center justify-center gap-8 mt-16 p-6 min-h-screen"
+>
+    <span class="text-4xl text-center">Want to get in touch with me?</span>
+    <form class="flex flex-col gap-4">
+        <Input
+            type="email"
+            size="lg"
+            placeholder="Your email"
+            class="border-gray-500"
+        />
+    </form>
+    <a href="#"
+        ><Button
+            size="lg"
+            class="mx-auto bg-white text-black border border-black hover:bg-black hover:text-white"
+            ><Send /> Send</Button
+        ></a
+    >
+</section>

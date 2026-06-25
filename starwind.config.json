@@ -23,6 +23,10 @@
     {
       "name": "badge",
       "version": "1.4.3"
+    },
+    {
+      "name": "input",
+      "version": "1.3.3"
     }
   ]
 }
