@@ -6,6 +6,7 @@ import {
     Card,
     CardAction,
     CardDescription,
+    CardContent,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -27,7 +28,7 @@ const projects = [
         img: GuildImage,
         description:
             "A guild website for an online gaming community. Built with Astro + Tailwind and fetches character data daily from the Raider.IO API through a GitHub Actions workflow.",
-        demo_url: "#",
+        demo_url: "https://guild-demo.venditto.dev",
     },
     {
         name: "In Development",
@@ -39,17 +40,14 @@ const projects = [
 ];
 ---
 
-<section
-    id="projects"
-    class="flex items-center justify-center gap-4 min-h-screen"
->
+<section id="projects" class="flex items-center justify-center gap-4">
     <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
         <CarouselContent>
             {
                 projects.map((project, index) => (
                     <CarouselItem class="md:basis-1/2">
-                        <div class="p-1">
-                            <Card>
+                        <div class="h-full p-1">
+                            <Card class="h-full flex flex-col">
                                 <Image
                                     src={project.img}
                                     alt={project.name}
@@ -58,14 +56,19 @@ const projects = [
                                 <CardHeader>
                                     <CardTitle>{project.name}</CardTitle>
                                 </CardHeader>
-                                <CardDescription class="p-6">
+                                <CardContent class="flex-1 p-6">
                                     <span>{project.description}</span>
-                                </CardDescription>
+                                </CardContent>
                                 <CardFooter class="flex justify-center">
                                     <CardAction>
-                                        <Button class="bg-white text-black border border-black hover:bg-black hover:text-white">
-                                            View Project
-                                        </Button>
+                                        <a
+                                            href={project.demo_url}
+                                            target="_blank"
+                                        >
+                                            <Button class="bg-white text-black border border-black hover:bg-black hover:text-white">
+                                                View Project
+                                            </Button>
+                                        </a>
                                     </CardAction>
                                 </CardFooter>
                             </Card>
