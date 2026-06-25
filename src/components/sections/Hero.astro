@@ -1,8 +1,17 @@
 ---
 import { Button } from "@/components/starwind/button";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/starwind/accordion";
+
 import { Image } from "astro:assets";
 import { Sparkles } from "@lucide/astro";
+import { CircleUserRound } from "@lucide/astro";
 import KeyboardImage from "@/assets/keyboard.png";
+import CodyImage from "@/assets/cody.jpg";
 ---
 
 <section
@@ -10,20 +19,21 @@ import KeyboardImage from "@/assets/keyboard.png";
     class="flex flex-col max-w-6xl mx-auto p-6 space-y-12 min-h-screen"
 >
     <div class="flex flex-col md:flex-row items-center gap-8">
-        <h1 class="text-center md:text-left text-4xl md:text-6xl md:flex-1">
-            I'm an aspiring web developer learning Astro, Tailwind and React.
+        <h1 class="text-center md:text-left text-2xl md:text-5xl md:flex-1">
+            I build fast, modern websites with Astro and Tailwind, backed by
+            years of hands-on experience in Linux and web technologies.
         </h1>
         <Image
             src={KeyboardImage}
             alt="keyboard"
-            class="w-2/3 md:w-2/5 rounded-lg shadow-lg"
+            class="w-3/4 md:w-2/5 rounded-lg shadow-lg"
         />
     </div>
     <div class="flex flex-col md:flex-row items-center gap-8">
         <p class="text-left text-sm md:text-base max-w-2xl">
-            My name is Cody and I'm working toward my goal of freelance web
-            development. I'm currently building this portfolio website and other
-            projects. Check back once in a while to see what I'm working on!
+            My name is Cody, I've spent years working with Linux, Python and
+            various web technologies, and now I'm putting that experience to
+            work as a freelance web developer.
         </p>
         <a href="#projects" class="mx-auto"
             ><Button
@@ -32,5 +42,61 @@ import KeyboardImage from "@/assets/keyboard.png";
                 >View my work <Sparkles /></Button
             ></a
         >
+    </div>
+    <div
+        id="about"
+        class="flex flex-col md:flex-row h-full items-center md:items-start gap-8 mt-24"
+    >
+        <Image
+            src={CodyImage}
+            alt="Cody Venditto"
+            class="rounded-full w-2/3 md:w-2/8"
+        />
+        <Accordion defaultValue="item-1" class="flex-1">
+            <p
+                class="text-2xl font-bold mb-4 flex justify-center items-center md:justify-start gap-2"
+            >
+                <CircleUserRound />About Me
+            </p>
+            <AccordionItem value="item-1">
+                <AccordionTrigger class="text-lg font-bold"
+                    >Who are you?</AccordionTrigger
+                >
+                <AccordionContent>
+                    I am Cody Venditto, a freelance web developer from
+                    Connecticut with a love for all things tech related.
+                </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+                <AccordionTrigger class="text-lg font-bold"
+                    >What do you do?</AccordionTrigger
+                >
+                <AccordionContent>
+                    I'm building fast, modern websites using Astro & Tailwind,
+                    the same technologies that power the websites used by some
+                    of the world's top companies.
+                </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+                <AccordionTrigger class="text-lg font-bold"
+                    >Are you accepting clients?</AccordionTrigger
+                >
+                <AccordionContent>
+                    I'm currently taking on a limited number of projects.
+                </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+                <AccordionTrigger class="text-lg font-bold"
+                    >Why should I choose you to make my website?</AccordionTrigger
+                >
+                <AccordionContent>
+                    I have over ten years of experience working with Linux and
+                    web technologies, and a background in cybersecurity. I'm
+                    able to troubleshoot and solve problems. I will work with
+                    you to create the website that you truly want and need at a
+                    fair price.
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
     </div>
 </section>

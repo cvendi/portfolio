@@ -22,12 +22,16 @@ import {
 import GuildImage from "@/content/projects/guild.png";
 import CraneImage from "@/content/projects/crane.png";
 
+import { SquareArrowRight } from "@lucide/astro";
+
 const projects = [
     {
         name: "Warcraft Guild",
         img: GuildImage,
         description:
             "A guild website for an online gaming community. Built with Astro + Tailwind and fetches character data daily from the Raider.IO API through a GitHub Actions workflow. Work in progress.",
+        page: "#",
+        demo: true,
         demo_url: "https://guild-demo.venditto.dev",
     },
     {
@@ -35,6 +39,8 @@ const projects = [
         img: CraneImage,
         description:
             "I'm currently working on new projects. Check back periodically to see my progress.",
+        page: "#",
+        demo: false,
         demo_url: "#",
     },
 ];
@@ -47,9 +53,9 @@ const projects = [
             <CarouselContent>
                 {
                     projects.map((project, index) => (
-                        <CarouselItem class="md:basis-1/2">
+                        <CarouselItem class="xs:basis-1 sm:basis-1/2 md:basis-1/2">
                             <div class="h-full p-1">
-                                <Card class="h-full flex flex-col">
+                                <Card class="mx-8 md:mx-0 h-full flex flex-col">
                                     <Image
                                         src={project.img}
                                         alt={project.name}
@@ -63,17 +69,24 @@ const projects = [
                                     <CardContent class="flex-1 p-6">
                                         <span>{project.description}</span>
                                     </CardContent>
-                                    <CardFooter class="flex justify-center bg-black">
-                                        <CardAction>
+                                    <CardFooter class="flex justify-center items-center bg-black gap-4">
+                                        <a href={project.page} target="_blank">
+                                            <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
+                                                <SquareArrowRight />
+                                                View Project
+                                            </Button>
+                                        </a>
+
+                                        {project.demo && (
                                             <a
                                                 href={project.demo_url}
                                                 target="_blank"
                                             >
-                                                <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
-                                                    View Project
+                                                <Button class="bg-green-400 text-black border border-black hover:bg-white hover:text-black">
+                                                    Live Demo
                                                 </Button>
                                             </a>
-                                        </CardAction>
+                                        )}
                                     </CardFooter>
                                 </Card>
                             </div>
@@ -81,8 +94,8 @@ const projects = [
                     ))
                 }
             </CarouselContent>
-            <CarouselPrevious class="hidden md:inline-flex" />
-            <CarouselNext class="hidden md:inline-flex" />
+            <CarouselPrevious />
+            <CarouselNext />
         </Carousel>
     </div>
 </section>

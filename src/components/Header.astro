@@ -2,7 +2,7 @@
 import Nav from "./Nav.astro";
 ---
 
-<header class="mt-4 p-6 sticky top-0 z-10 bg-white">
+<header class="mt-4 pt-6 sticky top-0 z-10 bg-white">
     <Nav />
 </header>
 
@@ -12,7 +12,7 @@ import Nav from "./Nav.astro";
         const setHeaderHeight = () => {
             document.documentElement.style.setProperty(
                 "--header-height",
-                `${header.offsetHeight}px`,
+                `${header.offsetHeight + 24}px`,
             );
         };
         new ResizeObserver(setHeaderHeight).observe(header);

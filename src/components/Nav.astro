@@ -1,10 +1,12 @@
 ---
 import { Terminal } from "@lucide/astro";
+import { siGithub } from "simple-icons";
 import { Button } from "@/components/starwind/button";
 const navItems = [
     { name: "Projects", href: "#projects" },
-    { name: "About", href: "#" },
+    { name: "About", href: "#about" },
     { name: "Contact", href: "#contact" },
+    { name: "GitHub", href: "https://github.com/cvendi" },
 ];
 ---
 
@@ -42,6 +44,21 @@ const navItems = [
                                     >
                                         {item.name}
                                     </Button>
+                                </a>
+                            </li>
+                        );
+                    } else if (item.name === "GitHub") {
+                        return (
+                            <li class="hover:text-gray-400">
+                                <a href={item.href} target="_blank">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        fill="currentColor"
+                                    >
+                                        <path d={siGithub.path} />
+                                    </svg>
                                 </a>
                             </li>
                         );
