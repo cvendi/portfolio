@@ -21,7 +21,7 @@ import {
 import GuildImage from "@/content/projects/guild.png";
 import CraneImage from "@/content/projects/crane.png";
 
-import { SquareArrowRight } from "@lucide/astro";
+import { SquareArrowRight, Rocket } from "@lucide/astro";
 
 const projects = [
     {
@@ -49,7 +49,7 @@ const projects = [
     id="projects"
     class="flex items-center justify-center gap-4 mt-24 mb-24"
 >
-    <div class="w-full max-w-6xl space-y-12">
+    <div class="w-full max-w-7xl space-y-12">
         <h1 class="text-3xl font-bold text-center">My Projects</h1>
         <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
             <CarouselContent>
@@ -57,7 +57,7 @@ const projects = [
                     projects.map((project, index) => (
                         <CarouselItem class="xs:basis-1 sm:basis-1/2 md:basis-1/2">
                             <div class="h-full p-1">
-                                <Card class="mx-8 md:mx-0 h-full flex flex-col">
+                                <Card class="mx-8 md:mx-0 h-full flex flex-col bg-gray-100">
                                     <Image
                                         src={project.img}
                                         alt={project.name}
@@ -75,7 +75,7 @@ const projects = [
                                         <a href={project.page} target="_blank">
                                             <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
                                                 <SquareArrowRight />
-                                                View Project
+                                                Details
                                             </Button>
                                         </a>
 
@@ -85,6 +85,7 @@ const projects = [
                                                 target="_blank"
                                             >
                                                 <Button class="bg-green-400 text-black border border-black hover:bg-white hover:text-black">
+                                                    <Rocket />
                                                     Live Demo
                                                 </Button>
                                             </a>
