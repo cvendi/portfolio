@@ -5,3 +5,16 @@ import Nav from "./Nav.astro";
 <header class="mt-4 p-6 sticky top-0 z-10 bg-white">
     <Nav />
 </header>
+
+<script>
+    const header = document.querySelector("header");
+    if (header) {
+        const setHeaderHeight = () => {
+            document.documentElement.style.setProperty(
+                "--header-height",
+                `${header.offsetHeight}px`,
+            );
+        };
+        new ResizeObserver(setHeaderHeight).observe(header);
+    }
+</script>

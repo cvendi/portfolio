@@ -41,43 +41,48 @@ const projects = [
 ---
 
 <section id="projects" class="flex items-center justify-center gap-4">
-    <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
-        <CarouselContent>
-            {
-                projects.map((project, index) => (
-                    <CarouselItem class="md:basis-1/2">
-                        <div class="h-full p-1">
-                            <Card class="h-full flex flex-col">
-                                <Image
-                                    src={project.img}
-                                    alt={project.name}
-                                    class="aspect-video w-full object-cover"
-                                />
-                                <CardHeader>
-                                    <CardTitle>{project.name}</CardTitle>
-                                </CardHeader>
-                                <CardContent class="flex-1 p-6">
-                                    <span>{project.description}</span>
-                                </CardContent>
-                                <CardFooter class="flex justify-center">
-                                    <CardAction>
-                                        <a
-                                            href={project.demo_url}
-                                            target="_blank"
-                                        >
-                                            <Button class="bg-white text-black border border-black hover:bg-black hover:text-white">
-                                                View Project
-                                            </Button>
-                                        </a>
-                                    </CardAction>
-                                </CardFooter>
-                            </Card>
-                        </div>
-                    </CarouselItem>
-                ))
-            }
-        </CarouselContent>
-        <CarouselPrevious class="hidden md:inline-flex" />
-        <CarouselNext class="hidden md:inline-flex" />
-    </Carousel>
+    <div class="w-full max-w-6xl space-y-12">
+        <h1 class="text-3xl font-bold text-center">My Projects</h1>
+        <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
+            <CarouselContent>
+                {
+                    projects.map((project, index) => (
+                        <CarouselItem class="md:basis-1/2">
+                            <div class="h-full p-1">
+                                <Card class="h-full flex flex-col">
+                                    <Image
+                                        src={project.img}
+                                        alt={project.name}
+                                        class="aspect-video w-full object-cover"
+                                    />
+                                    <CardHeader>
+                                        <CardTitle class="text-3xl font-bold mt-4">
+                                            {project.name}
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent class="flex-1 p-6">
+                                        <span>{project.description}</span>
+                                    </CardContent>
+                                    <CardFooter class="flex justify-center bg-black">
+                                        <CardAction>
+                                            <a
+                                                href={project.demo_url}
+                                                target="_blank"
+                                            >
+                                                <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
+                                                    View Project
+                                                </Button>
+                                            </a>
+                                        </CardAction>
+                                    </CardFooter>
+                                </Card>
+                            </div>
+                        </CarouselItem>
+                    ))
+                }
+            </CarouselContent>
+            <CarouselPrevious class="hidden md:inline-flex" />
+            <CarouselNext class="hidden md:inline-flex" />
+        </Carousel>
+    </div>
 </section>
