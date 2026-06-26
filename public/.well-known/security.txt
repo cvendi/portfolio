@@ -1,0 +1,8 @@
+# Hi! This is my personal portfolio built with Astro.
+# If you find something weird here, I'd greatly appreciate your report.
+# I can't afford to offer a bounty, just gratitude.
+# If it's something broken in Astro core itself, please report it to them as well.
+# Thank you!
+Contact: mailto:security@venditto.dev
+Expires: 2027-06-26T00:00:00.000Z
+Preferred-Languages: en

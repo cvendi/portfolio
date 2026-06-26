@@ -21,7 +21,7 @@ import {
 import GuildImage from "@/content/projects/guild.png";
 import CraneImage from "@/content/projects/crane.png";
 
-import { SquareArrowRight, Rocket } from "@lucide/astro";
+import { SquareArrowRight, Rocket, FolderGit2 } from "@lucide/astro";
 
 const projects = [
     {
@@ -50,7 +50,11 @@ const projects = [
     class="flex items-center justify-center gap-4 mt-24 mb-24"
 >
     <div class="w-full max-w-7xl space-y-12">
-        <h1 class="text-3xl font-bold text-center">My Projects</h1>
+        <h1
+            class="flex items-center justify-center text-3xl font-bold text-center gap-3"
+        >
+            <FolderGit2 class="h-6 w-6" /> My Projects
+        </h1>
         <Carousel opts={{ align: "start" }} class="mx-auto w-full max-w-5xl">
             <CarouselContent>
                 {
