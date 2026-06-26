@@ -9,7 +9,10 @@ import { Send } from "@lucide/astro";
     class="flex flex-col items-center justify-center gap-8 mt-24 mb-24 p-6"
 >
     <span class="text-4xl text-center">Want to get in touch with me?</span>
-    <form id="contact-form" class="flex flex-col gap-4">
+    <form
+        id="contact-form"
+        class="flex flex-col gap-4 items-center justify-center"
+    >
         <Input
             type="email"
             name="email"
@@ -29,29 +32,33 @@ import { Send } from "@lucide/astro";
         </div>
 
         <Button
+            id="submit-button"
             type="submit"
             size="lg"
             class="mx-auto bg-white text-black border border-black hover:bg-black hover:text-white"
             ><Send /> Send</Button
         >
-        <p id="contact-status" class="hidden text-sm"></p>
+        <code id="contact-status"></code>
     </form>
 </section>
 
 <script is:inline>
+    // 1x00000000000000000000AA - test site key
+    // 0x4AAAAAADrgFT4pgM4XEDdp - real site key
+
     const form = document.querySelector("#contact-form");
     const statusEl = document.querySelector("#contact-status");
-    const button = form?.querySelector("button");
+    const button = document.getElementById("submit-button");
 
     // Turnstile callbacks must be global, so this script is `is:inline`.
-    window.onTurnstileSuccess = () => button?.removeAttribute("disabled");
-    window.onTurnstileError = () => button?.setAttribute("disabled", "true");
-    window.onTurnstileExpired = () => button?.setAttribute("disabled", "true");
+    window.onTurnstileSuccess = () => (button.disabled = false);
+    window.onTurnstileError = () => (button.disabled = true);
+    window.onTurnstileExpired = () => (button.disabled = true);
 
     function showStatus(msg, ok) {
         if (!statusEl) return;
         statusEl.textContent = msg;
-        statusEl.className = `text-sm ${ok ? "text-green-600" : "text-red-600"}`;
+        statusEl.className = `bg-black border rounded-lg p-4 text-xl text-center flex items-center justify-center ${ok ? "text-green-400" : "text-red-600"}`;
     }
 
     form?.addEventListener("submit", async (e) => {
@@ -62,11 +69,11 @@ import { Send } from "@lucide/astro";
 
         if (!email) return;
         if (!token) {
-            showStatus("Please complete the verification.", false);
+            showStatus("Turnstile verification failed.", false);
             return;
         }
 
-        button?.setAttribute("disabled", "true");
+        button.disabled = true;
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
