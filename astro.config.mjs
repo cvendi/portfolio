@@ -10,6 +10,7 @@ export default defineConfig({
   integrations: [sitemap()],
   adapter: cloudflare({
     imageService: { build: "compile", runtime: "cloudflare-binding" },
+    platformProxy: { enabled: true },
   }),
   fonts: [
     {

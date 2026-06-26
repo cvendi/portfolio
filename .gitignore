@@ -17,6 +17,7 @@ pnpm-workspace.yaml
 # environment variables
 .env
 .env.production
+.dev.vars
 
 # macOS-specific files
 .DS_Store
