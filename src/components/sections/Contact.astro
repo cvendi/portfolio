@@ -2,6 +2,8 @@
 import { Button } from "@/components/starwind/button";
 import { Input } from "@/components/starwind/input";
 import { Send } from "@lucide/astro";
+
+const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 ---
 
 <section
@@ -24,7 +26,7 @@ import { Send } from "@lucide/astro";
 
         <div
             class="cf-turnstile"
-            data-sitekey="0x4AAAAAADrgFT4pgM4XEDdp"
+            data-sitekey={sitekey}
             data-callback="onTurnstileSuccess"
             data-error-callback="onTurnstileError"
             data-expired-callback="onTurnstileExpired"
@@ -43,9 +45,6 @@ import { Send } from "@lucide/astro";
 </section>
 
 <script is:inline>
-    // 1x00000000000000000000AA - test site key
-    // 0x4AAAAAADrgFT4pgM4XEDdp - real site key
-
     const form = document.querySelector("#contact-form");
     const statusEl = document.querySelector("#contact-status");
     const button = document.getElementById("submit-button");
