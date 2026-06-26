@@ -7,6 +7,7 @@ import { glob, file } from "astro/loaders";
 // 3. Import Zod
 import { z } from "astro/zod";
 import { DraftingCompass } from "@lucide/astro";
+import { siGithub } from "simple-icons";
 
 // 4. Define a `loader` and `schema` for each collection
 const projects = defineCollection({
@@ -19,6 +20,7 @@ const projects = defineCollection({
       description: z.string(),
       demo: z.boolean().optional(),
       demo_url: z.string().optional(),
+      github: z.string().optional(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       draft: z.boolean().default(false),

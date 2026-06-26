@@ -1,19 +1,86 @@
 ---
 import { Terminal } from "@lucide/astro";
-import { siGithub } from "simple-icons";
-import { Button } from "@/components/starwind/button";
-import { ThemeToggle } from "@/components/starwind/theme-toggle";
+import NavItem from "./NavItem.astro";
 
 const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Contact", href: "/#contact" },
     { name: "ThemeToggle", href: "" },
-    { name: "GitHub", href: "https://github.com/cvendi" },
+    { name: "GitHub", href: "https://github.com/cvendi/portfolio" },
 ];
 ---
 
-<nav class="grid grid-cols-2 grid-rows-auto max-w-7xl mx-auto gap-6">
+<div
+    class="relative mx-auto flex w-full max-w-7xl items-center px-6 py-4 sm:px-8 lg:px-10 xl:px-12 md:hidden"
+>
+    <a
+        href="/"
+        class="flex flex-1 items-center gap-4 p-4 hover:bg-black hover:border-black hover:rounded hover:text-green-300"
+    >
+        <span
+            class="inline-flex items-center justify-center bg-black rounded p-2"
+        >
+            <Terminal class="h-8 w-8 text-white" />
+        </span>
+        <span class="flex flex-col">
+            <span class="font-bold text-2xl">Cody Venditto</span>
+        </span>
+    </a>
+    <details class="mobile-nav group">
+        <summary
+            class="flex h-11 w-11 shrink-0 list-none items-center justify-center rounded-md border border-border text-body-text transition-colors hover:text-legendary-accent [&::-webkit-details-marker]:hidden"
+        >
+            <span class="sr-only">Toggle navigation menu</span>
+            <svg
+                class="h-6 w-6 group-open:hidden"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M4 7h16"></path>
+                <path d="M4 12h16"></path>
+                <path d="M4 17h16"></path>
+            </svg>
+            <svg
+                class="hidden h-6 w-6 group-open:block"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+            </svg>
+        </summary>
+        <nav
+            class="absolute inset-x-0 top-full z-10 border-t border-border bg-background px-6 py-6 shadow-lg sm:px-8"
+        >
+            <ul class="flex flex-col items-center gap-6 text-md">
+                <ul class="flex items-center gap-8">
+                    {
+                        navItems
+                            .slice(0, 3)
+                            .map((item) => <NavItem item={item} />)
+                    }
+                </ul>
+                <ul class="flex items-center gap-8">
+                    {navItems.slice(3).map((item) => <NavItem item={item} />)}
+                </ul>
+            </ul>
+        </nav>
+    </details>
+</div>
+<nav class="hidden md:grid grid-cols-2 grid-rows-auto max-w-7xl mx-auto gap-6">
     <div
         class="col-span-2 md:col-span-1 flex justify-center md:justify-start items-center gap-4"
     >
@@ -36,51 +103,7 @@ const navItems = [
         class="col-start-1 row-start-2 col-span-2 md:row-start-1 md:col-start-2 md:col-span-1 flex items-center md:justify-end justify-center"
     >
         <ul class="flex items-center gap-8 text-md md:text-xl">
-            {
-                navItems.map((item) => {
-                    if (item.name === "Contact") {
-                        return (
-                            <li class="hover:text-blue-300">
-                                <a href={item.href}>
-                                    <Button
-                                        class="bg-white text-black border border-black hover:bg-black hover:text-white transition-colors text-md"
-                                        size="md"
-                                    >
-                                        {item.name}
-                                    </Button>
-                                </a>
-                            </li>
-                        );
-                    } else if (item.name === "ThemeToggle") {
-                        return (
-                            <li>
-                                <ThemeToggle />
-                            </li>
-                        );
-                    } else if (item.name === "GitHub") {
-                        return (
-                            <li class="hover:text-gray-400">
-                                <a href={item.href} target="_blank">
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        width="24"
-                                        height="24"
-                                        fill="currentColor"
-                                    >
-                                        <path d={siGithub.path} />
-                                    </svg>
-                                </a>
-                            </li>
-                        );
-                    } else {
-                        return (
-                            <li class="hover:text-gray-400">
-                                <a href={item.href}>{item.name}</a>
-                            </li>
-                        );
-                    }
-                })
-            }
+            {navItems.map((item) => <NavItem item={item} />)}
         </ul>
     </div>
     <div class="md:row-start-2 row-start-3 col-span-2">

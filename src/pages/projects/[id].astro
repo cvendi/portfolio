@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
 import { Button } from "@/components/starwind/button";
+import { Prose } from "@/components/starwind/prose";
+import { siGithub } from "simple-icons";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -17,19 +19,63 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 
-const { name, img, imgAlt, description, demo, demo_url, pubDate, updatedDate } =
-    project.data;
+const {
+    name,
+    img,
+    imgAlt,
+    description,
+    demo,
+    demo_url,
+    github,
+    pubDate,
+    updatedDate,
+} = project.data;
+
+const date = updatedDate.toDateString();
 ---
 
-<BaseLayout>
-    <div class="flex flex-col items-center justify-center mt-24 gap-16">
-        <h1 class="text-4xl font-bold">Work in progress. Check back soon!</h1>
-        <a href="/"
-            ><Button
-                size="lg"
-                class="bg-white text-black border border-black hover:bg-black hover:text-white"
-                >Back to home</Button
-            ></a
+<BaseLayout page={name}>
+    <div
+        class="flex flex-col items-center justify-center px-6 mt-24 mb-24 gap-12"
+    >
+        <Image
+            src={img}
+            alt={imgAlt}
+            class="w-full max-w-3xl aspect-video object-cover rounded-lg border border-border shadow-lg"
+        />
+        <div
+            class="flex flex-col space-y-6 justify-between items-center w-full max-w-3xl"
         >
+            <h1 class="font-bold text-5xl">
+                {name}
+            </h1><div class="flex gap-8 items-center">
+                {
+                    demo && (
+                        <Button
+                            class="bg-green-400 text-black border border-black hover:bg-white hover:text-black"
+                            href={demo_url}
+                        >
+                            Live Demo
+                        </Button>
+                    )
+                }<p>
+                    <a href={github} target="_blank">
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="36"
+                            height="36"
+                            fill="currentColor"
+                        >
+                            <path d={siGithub.path}></path>
+                        </svg></a
+                    >
+                </p>
+            </div>
+            <p class="text-sm text-gray-500">Updated: {date}</p>
+        </div>
+        <hr class="w-full max-w-3xl" />
+        <Prose>
+            <Content />
+        </Prose>
     </div>
 </BaseLayout>

@@ -39,6 +39,14 @@
     {
       "name": "theme-toggle",
       "version": "1.0.2"
+    },
+    {
+      "name": "avatar",
+      "version": "1.2.3"
+    },
+    {
+      "name": "prose",
+      "version": "1.0.2"
     }
   ]
 }
