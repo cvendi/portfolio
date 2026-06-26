@@ -6,6 +6,7 @@ import { glob, file } from "astro/loaders";
 
 // 3. Import Zod
 import { z } from "astro/zod";
+import { DraftingCompass } from "@lucide/astro";
 
 // 4. Define a `loader` and `schema` for each collection
 const projects = defineCollection({
@@ -20,6 +21,7 @@ const projects = defineCollection({
       demo_url: z.string().optional(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
+      draft: z.boolean().default(false),
     }),
 });
 

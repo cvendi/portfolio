@@ -7,4 +7,5 @@ demo: true
 demo_url: "https://guild-demo.venditto.dev"
 pubDate: "2026-06-26"
 updatedDate: "2026-06-26"
+draft: false
 ---
