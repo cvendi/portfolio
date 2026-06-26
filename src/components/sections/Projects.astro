@@ -3,8 +3,6 @@ import { Button } from "@/components/starwind/button";
 import { Image } from "astro:assets";
 import {
     Card,
-    CardAction,
-    CardDescription,
     CardContent,
     CardFooter,
     CardHeader,
@@ -17,9 +15,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/starwind/carousel";
-
-import GuildImage from "@/content/projects/guild.png";
-import CraneImage from "@/content/projects/crane.png";
 
 import { SquareArrowRight, Rocket, FolderGit2 } from "@lucide/astro";
 
@@ -46,7 +41,7 @@ const projects = (
                     projects.map((project, index) => (
                         <CarouselItem class="xs:basis-1 sm:basis-1/2 md:basis-1/2">
                             <div class="h-full p-1">
-                                <Card class="mx-8 md:mx-0 h-full flex flex-col bg-gray-100">
+                                <Card class="mx-8 md:mx-0 h-full flex flex-col">
                                     <Image
                                         src={project.data.img}
                                         alt={project.data.imgAlt}

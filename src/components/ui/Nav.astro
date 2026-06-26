@@ -2,11 +2,13 @@
 import { Terminal } from "@lucide/astro";
 import { siGithub } from "simple-icons";
 import { Button } from "@/components/starwind/button";
+import { ThemeToggle } from "@/components/starwind/theme-toggle";
 
 const navItems = [
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
+    { name: "ThemeToggle", href: "" },
     { name: "GitHub", href: "https://github.com/cvendi" },
 ];
 ---
@@ -47,6 +49,12 @@ const navItems = [
                                         {item.name}
                                     </Button>
                                 </a>
+                            </li>
+                        );
+                    } else if (item.name === "ThemeToggle") {
+                        return (
+                            <li>
+                                <ThemeToggle />
                             </li>
                         );
                     } else if (item.name === "GitHub") {
