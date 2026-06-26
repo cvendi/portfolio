@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.0.0",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/inter": "^5.2.8",
     "@lucide/astro": "^1.21.0",
     "@tabler/icons": "^3.44.0",
