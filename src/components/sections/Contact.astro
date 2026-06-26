@@ -9,19 +9,81 @@ import { Send } from "@lucide/astro";
     class="flex flex-col items-center justify-center gap-8 mt-24 mb-24 p-6"
 >
     <span class="text-4xl text-center">Want to get in touch with me?</span>
-    <form class="flex flex-col gap-4">
+    <form id="contact-form" class="flex flex-col gap-4">
         <Input
             type="email"
+            name="email"
+            required
             size="lg"
-            placeholder="Your email address"
+            placeholder="you@example.com"
             class="border-gray-500"
         />
-    </form>
-    <a href="#"
-        ><Button
+
+        <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAADrgFT4pgM4XEDdp"
+            data-callback="onTurnstileSuccess"
+            data-error-callback="onTurnstileError"
+            data-expired-callback="onTurnstileExpired"
+        >
+        </div>
+
+        <Button
+            type="submit"
             size="lg"
             class="mx-auto bg-white text-black border border-black hover:bg-black hover:text-white"
             ><Send /> Send</Button
-        ></a
-    >
+        >
+        <p id="contact-status" class="hidden text-sm"></p>
+    </form>
 </section>
+
+<script is:inline>
+    const form = document.querySelector("#contact-form");
+    const statusEl = document.querySelector("#contact-status");
+    const button = form?.querySelector("button");
+
+    // Turnstile callbacks must be global, so this script is `is:inline`.
+    window.onTurnstileSuccess = () => button?.removeAttribute("disabled");
+    window.onTurnstileError = () => button?.setAttribute("disabled", "true");
+    window.onTurnstileExpired = () => button?.setAttribute("disabled", "true");
+
+    function showStatus(msg, ok) {
+        if (!statusEl) return;
+        statusEl.textContent = msg;
+        statusEl.className = `text-sm ${ok ? "text-green-600" : "text-red-600"}`;
+    }
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const email = data.get("email")?.toString().trim();
+        const token = data.get("cf-turnstile-response")?.toString();
+
+        if (!email) return;
+        if (!token) {
+            showStatus("Please complete the verification.", false);
+            return;
+        }
+
+        button?.setAttribute("disabled", "true");
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, token }),
+            });
+            if (res.ok) {
+                form.reset();
+                showStatus("Thanks! I'll be in touch.", true);
+            } else {
+                showStatus("Something went wrong. Please try again.", false);
+            }
+        } catch {
+            showStatus("Network error. Please try again.", false);
+        } finally {
+            window.turnstile?.reset(); // token is single-use; get a fresh one
+            // button stays disabled until the fresh challenge re-fires onTurnstileSuccess
+        }
+    });
+</script>
