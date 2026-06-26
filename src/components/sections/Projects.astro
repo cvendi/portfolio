@@ -23,26 +23,11 @@ import CraneImage from "@/content/projects/crane.png";
 
 import { SquareArrowRight, Rocket, FolderGit2 } from "@lucide/astro";
 
-const projects = [
-    {
-        name: "Warcraft Guild",
-        img: GuildImage,
-        description:
-            "A guild website for an online gaming community. Built with Astro + Tailwind and fetches character data daily from the Raider.IO API through a GitHub Actions workflow. Work in progress.",
-        page: "#",
-        demo: true,
-        demo_url: "https://guild-demo.venditto.dev",
-    },
-    {
-        name: "In Development",
-        img: CraneImage,
-        description:
-            "I'm currently working on new projects. Check back periodically to see my progress.",
-        page: "#",
-        demo: false,
-        demo_url: "#",
-    },
-];
+import { getCollection } from "astro:content";
+
+const projects = (
+    await getCollection("projects", ({ data }) => !data.draft)
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <section
@@ -63,29 +48,32 @@ const projects = [
                             <div class="h-full p-1">
                                 <Card class="mx-8 md:mx-0 h-full flex flex-col bg-gray-100">
                                     <Image
-                                        src={project.img}
-                                        alt={project.name}
+                                        src={project.data.img}
+                                        alt={project.data.imgAlt}
                                         class="aspect-video w-full object-cover"
                                     />
                                     <CardHeader>
                                         <CardTitle class="text-3xl font-bold mt-4">
-                                            {project.name}
+                                            {project.data.name}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent class="flex-1 p-6">
-                                        <span>{project.description}</span>
+                                        <span>{project.data.description}</span>
                                     </CardContent>
                                     <CardFooter class="flex justify-center items-center bg-black gap-4">
-                                        <a href={project.page} target="_blank">
+                                        <a
+                                            href={`projects/${project.id}`}
+                                            target="_blank"
+                                        >
                                             <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
                                                 <SquareArrowRight />
                                                 Details
                                             </Button>
                                         </a>
 
-                                        {project.demo && (
+                                        {project.data.demo && (
                                             <a
-                                                href={project.demo_url}
+                                                href={project.data.demo_url}
                                                 target="_blank"
                                             >
                                                 <Button class="bg-green-400 text-black border border-black hover:bg-white hover:text-black">
