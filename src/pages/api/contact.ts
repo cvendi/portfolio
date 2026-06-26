@@ -30,6 +30,7 @@ export async function POST({ request }) {
       }),
     },
   );
+
   const outcome = await verify.json<{ success: boolean }>();
   if (!outcome.success) {
     return Response.json({ error: "failed_challenge" }, { status: 403 });
