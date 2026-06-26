@@ -61,10 +61,7 @@ const projects = (
                                         <span>{project.data.description}</span>
                                     </CardContent>
                                     <CardFooter class="flex justify-center items-center bg-black gap-4">
-                                        <a
-                                            href={`projects/${project.id}`}
-                                            target="_blank"
-                                        >
+                                        <a href={`projects/${project.id}`}>
                                             <Button class="bg-black text-white border border-white hover:bg-white hover:text-black">
                                                 <SquareArrowRight />
                                                 Details
@@ -72,10 +69,7 @@ const projects = (
                                         </a>
 
                                         {project.data.demo && (
-                                            <a
-                                                href={project.data.demo_url}
-                                                target="_blank"
-                                            >
+                                            <a href={project.data.demo_url}>
                                                 <Button class="bg-green-400 text-black border border-black hover:bg-white hover:text-black">
                                                     <Rocket />
                                                     Live Demo
