@@ -10,7 +10,13 @@ export async function POST({ request }) {
     return Response.json({ error: "bad_request" }, { status: 400 });
   }
 
-  if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (
+    typeof email !== "string" ||
+    email.length > 254 ||
+    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(
+      email,
+    )
+  ) {
     return Response.json({ error: "invalid_email" }, { status: 400 });
   }
   if (typeof token !== "string" || token.length === 0) {
