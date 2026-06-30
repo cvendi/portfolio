@@ -6,8 +6,8 @@ export const server = {
   submitContact: defineAction({
     accept: "form",
     input: z.object({
-      email: z.string().email(),
-      turnstileToken: z.string(),
+      email: z.email(),
+      "cf-turnstile-response": z.string(),
     }),
     handler: async (input, context) => {
       const verify = await fetch(
@@ -17,7 +17,7 @@ export const server = {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({
             secret: env.TURNSTILE_SECRET_KEY,
-            response: input.turnstileToken,
+            response: input["cf-turnstile-response"],
             remoteip: context.request.headers.get("CF-Connecting-IP") ?? "",
           }),
         },
