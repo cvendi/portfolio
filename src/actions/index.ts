@@ -39,7 +39,7 @@ export const server = {
         },
         body: JSON.stringify({
           from: "Portfolio Contact <contact@mail.venditto.dev>",
-          to: ["hello@venditto.dev"],
+          to: ["cody@venditto.dev"],
           reply_to: input.email,
           subject: `New contact request from ${input.email}`,
           text: `New contact:\n\n${input.email}`,
