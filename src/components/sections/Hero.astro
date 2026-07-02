@@ -5,6 +5,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/starwind/accordion";
+import { Button } from "@/components/starwind/button";
 
 import { Image } from "astro:assets";
 import { CircleUserRound } from "@lucide/astro";
@@ -17,14 +18,24 @@ import CodyImage from "@/assets/cody.jpg";
     class="flex flex-col max-w-7xl mx-auto p-6 space-y-12 mt-16 md:mt-24 min-h-screen"
 >
     <div class="flex flex-col md:flex-row items-center gap-10">
-        <h1 class="text-center md:text-left text-4xl md:text-6xl md:flex-1">
-            Fast, professional websites for small businesses — built to help
-            your customers find you and trust you.
-        </h1>
+        <div
+            class="flex flex-col items-center md:items-start gap-6 text-center md:text-left md:flex-1"
+        >
+            <p class="text-4xl md:text-6xl">
+                Fast, professional websites for small businesses — built to help
+                your customers find you and trust you.
+            </p>
+            <Button
+                href="#projects"
+                size="lg"
+                class="dark:bg-white dark:text-black dark:border-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white bg-black text-white border border-black hover:bg-white hover:text-black mt-6"
+                >See my work</Button
+            >
+        </div>
         <Image
             src={JupiterImage}
             alt="Jupiter"
-            class="w-3/4 md:w-2/5 rounded-lg shadow-lg"
+            class="w-3/4 md:w-2/5 rounded-lg shadow-lg object-cover self-stretch"
         />
     </div>
     <hr class="max-w-7xl mt-24" />

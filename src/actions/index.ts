@@ -42,7 +42,7 @@ export const server = {
           to: ["cody@venditto.dev"],
           reply_to: input.email,
           subject: `New contact request from ${input.email}`,
-          text: `New contact:\n\n${input.email}`,
+          text: `A portfolio visitor has submitted a contact request:\n\nEmail: ${input.email}`,
         }),
       });
 
