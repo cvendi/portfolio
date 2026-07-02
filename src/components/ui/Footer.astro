@@ -1,11 +1,12 @@
 ---
-import { siGithub, siX } from "simple-icons";
+import { siGithub, siX, siAstro } from "simple-icons";
 ---
 
-<footer class="flex justify-center items-center p-12 text-sm opacity-50">
-    <div class="flex flex-col items-center gap-2 space-y-4">
-        <p>&copy; 2026 Cody Venditto</p>
-        <div class="flex gap-4">
+<footer class="w-full">
+    <div
+        class="mx-auto flex max-w-7xl justify-between items-center gap-4 px-6 py-12 text-center text-sm opacity-50"
+    >
+        <div class="flex items-center justify-center gap-4 sm:justify-start">
             <a href="https://github.com/cvendi" target="_blank">
                 <svg
                     viewBox="0 0 24 24"
@@ -27,5 +28,11 @@ import { siGithub, siX } from "simple-icons";
                 </svg>
             </a>
         </div>
+        <p>&copy; 2026 Cody Venditto</p>
+        <a href="https://astro.build" target="_blank">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path d={siAstro.path}></path>
+            </svg>
+        </a>
     </div>
 </footer>

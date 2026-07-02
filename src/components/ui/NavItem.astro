@@ -15,7 +15,7 @@ const { item } = Astro.props;
         <li class="hover:text-blue-300">
             <a href={item.href}>
                 <Button
-                    class="bg-white text-black border border-black hover:bg-black hover:text-white transition-colors text-md"
+                    class="bg-black text-white dark:bg-white dark:text-black border border-transparent dark:border-black hover:bg-white hover:text-black hover:border-black dark:hover:bg-black dark:hover:text-white dark:hover:border-white transition-colors text-md"
                     size="md"
                 >
                     {item.name}
