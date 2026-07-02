@@ -6,7 +6,9 @@ export const server = {
   submitContact: defineAction({
     accept: "form",
     input: z.object({
-      email: z.email(),
+      name: z.string().min(1).max(100),
+      email: z.email().max(254),
+      message: z.string().min(1).max(2000),
       "cf-turnstile-response": z.string(),
     }),
     handler: async (input, context) => {
@@ -41,8 +43,8 @@ export const server = {
           from: "Portfolio Contact <contact@mail.venditto.dev>",
           to: ["cody@venditto.dev"],
           reply_to: input.email,
-          subject: `New contact request from ${input.email}`,
-          text: `A portfolio visitor has submitted a contact request:\n\nEmail: ${input.email}`,
+          subject: `New contact request from ${input.name} (${input.email})`,
+          text: `A portfolio visitor has submitted a contact request:\n\nName: ${input.name}\nEmail: ${input.email}\nMessage: ${input.message}`,
         }),
       });
 

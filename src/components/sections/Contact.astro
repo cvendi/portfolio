@@ -1,6 +1,7 @@
 ---
 import { Button } from "@/components/starwind/button";
 import { Input } from "@/components/starwind/input";
+import { Textarea } from "@/components/starwind/textarea";
 import { Send } from "@lucide/astro";
 
 const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
@@ -12,12 +13,20 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 >
     <span class="text-4xl text-center">Want to get in touch with me?</span>
     <span class="text-lg text-center"
-        >Drop your email below and I'll get back to you.</span
+        >Drop a message below and I'll get back to you.</span
     >
     <form
         id="contact-form"
-        class="flex flex-col gap-4 items-center justify-center"
+        class="flex flex-col gap-4 items-center justify-center md:w-120"
     >
+        <Input
+            type="text"
+            name="name"
+            required
+            size="lg"
+            placeholder="Your name"
+            class="border-gray-500"
+        />
         <Input
             type="email"
             name="email"
@@ -25,6 +34,13 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
             size="lg"
             placeholder="your@email.com"
             class="border-gray-500"
+        />
+        <Textarea
+            name="message"
+            required
+            size="lg"
+            placeholder="Your message..."
+            class="border-gray-500 h-40"
         />
 
         <div
