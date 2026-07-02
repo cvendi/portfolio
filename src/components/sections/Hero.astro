@@ -6,9 +6,15 @@ import {
     AccordionTrigger,
 } from "@/components/starwind/accordion";
 import { Button } from "@/components/starwind/button";
-
+import { Badge } from "@/components/starwind/badge";
 import { Image } from "astro:assets";
-import { CircleUserRound } from "@lucide/astro";
+import {
+    CircleUserRound,
+    CircleCheckBig,
+    ShieldPlus,
+    Gauge,
+    ArrowBigRight,
+} from "@lucide/astro";
 import JupiterImage from "@/assets/jupiter.png";
 import CodyImage from "@/assets/cody.jpg";
 ---
@@ -38,6 +44,7 @@ import CodyImage from "@/assets/cody.jpg";
             class="w-3/4 md:w-2/5 rounded-lg shadow-lg object-cover self-center md:self-stretch"
         />
     </div>
+
     <hr class="max-w-7xl mt-24" />
     <div
         id="about"
@@ -48,62 +55,62 @@ import CodyImage from "@/assets/cody.jpg";
             alt="Cody Venditto"
             class="rounded-lg border-6 border-black w-2/3 md:w-1/5"
         />
-        <Accordion class="flex-1">
-            <p
-                class="text-3xl font-bold mb-4 flex justify-center items-center md:justify-start gap-2"
-            >
-                <CircleUserRound />About Me
+        <div class="space-y-8 max-w-2xl">
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <h2 class="text-2xl font-semibold flex items-center gap-2">
+                    <CircleUserRound /> About Me
+                </h2>
+                <Badge variant="success"
+                    ><CircleCheckBig />Available for new projects</Badge
+                >
+            </div>
+            <p>I'm Cody, a web developer in Connecticut.</p>
+            <p>
+                I build fast, professional websites for small businesses, the
+                kind that show customers who you are, what you offer, and how to
+                reach you. I'm using the latest technologies to ensure your site
+                is fast, secure, and works well on all devices.
             </p>
-            <AccordionItem value="item-1">
-                <AccordionTrigger class="text-lg font-bold"
-                    >Who are you?</AccordionTrigger
-                >
-                <AccordionContent>
-                    My name is Cody, I'm a web developer.
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-                <AccordionTrigger class="text-lg font-bold"
-                    >What do you do?</AccordionTrigger
-                >
-                <AccordionContent>
-                    I build fast, professional websites for small businesses,
-                    the kind that show customers who you are, what you offer,
-                    and how to reach you. They load quickly, work great on
-                    phones, and help you show up when people search for
-                    businesses like yours. If you mainly need a polished,
-                    reliable online presence rather than a complex app, that's
-                    exactly what I do best.
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-                <AccordionTrigger class="text-lg font-bold"
-                    >Are you accepting clients?</AccordionTrigger
-                >
-                <AccordionContent>
-                    Yes, I'm currently taking on a limited number of projects.
-                    I'm accepting small business clients.
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-                <AccordionTrigger class="text-lg font-bold"
-                    >Why should I choose you to make my website?</AccordionTrigger
-                >
-                <AccordionContent>
-                    I've spent years working with Linux, experimenting with web
-                    technologies, and building a security-first mindset. I have
-                    cybersecurity experience through <a
-                        href="https://profile.hackthebox.com/profile/019e8872-115f-73d5-bf4e-02db0121776b"
-                        target="_blank"
-                        rel="noreferrer"
-                        class="text-green-500 hover:text-green-700 hover:underline"
-                        >Hack The Box</a
-                    >, where developers practice finding, exploiting and fixing
-                    real vulnerabilities. I'm now applying that experience and
-                    knowledge as a freelance web developer. I'll work with you
-                    to create a fast, secure website.
-                </AccordionContent>
-            </AccordionItem>
-        </Accordion>
+        </div>
+    </div>
+    <hr class="max-w-7xl mt-24" />
+    <div class="mt-24 mb-24 grid gap-12 text-left md:grid-cols-3">
+        <div class="flex flex-col">
+            <h2 class="text-2xl font-semibold gap-2 flex items-center">
+                <Gauge /> Fast
+            </h2>
+            <p class="mt-4">
+                The sites I build have near-instant load times, work great on
+                phones, and help you show up when people search for businesses
+                like yours on search engines.
+            </p>
+        </div>
+        <div class="flex flex-col">
+            <h2 class="text-2xl font-semibold gap-2 flex items-center">
+                <ShieldPlus /> Secure
+            </h2>
+            <p class="mt-4">
+                I've spent years working with Linux, experimenting with web
+                technologies, and building a security-first mindset. I have
+                cybersecurity experience through <a
+                    href="https://profile.hackthebox.com/profile/019e8872-115f-73d5-bf4e-02db0121776b"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-green-500 hover:text-green-700 hover:underline"
+                    >Hack The Box</a
+                >, where developers practice finding, exploiting and fixing real
+                vulnerabilities. I'm now applying that experience and knowledge
+                as a freelance web developer.
+            </p>
+        </div>
+        <div class="flex flex-col">
+            <h2 class="text-2xl font-semibold gap-2 flex items-center">
+                <ArrowBigRight /> Direct
+            </h2>
+            <p class="mt-4">
+                When you hire me, you'll be working with me directly, not an
+                agency. I'll work with you to create a fast, secure website.
+            </p>
+        </div>
     </div>
 </section>
