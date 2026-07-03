@@ -2,6 +2,7 @@
 import { Button } from "@/components/starwind/button";
 import { Input } from "@/components/starwind/input";
 import { Textarea } from "@/components/starwind/textarea";
+import { Spinner } from "@/components/starwind/spinner";
 import { Send } from "@lucide/astro";
 
 const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
@@ -53,6 +54,8 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
         >
         </div>
 
+        <Spinner id="spinner" class="hidden" />
+
         <Button
             id="submit-button"
             type="submit"
@@ -90,11 +93,20 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
     const button = document.getElementById(
         "submit-button",
     ) as HTMLButtonElement;
+    const spinner = document.getElementById("spinner")!;
 
     function showStatus(msg: string, ok: boolean) {
         if (!statusEl) return;
         statusEl.textContent = msg;
         statusEl.className = `bg-black border rounded-lg p-4 text-xl text-center flex items-center justify-center ${ok ? "text-green-400" : "text-red-600"}`;
+    }
+
+    function showSpinner() {
+        spinner.classList.remove("hidden");
+    }
+
+    function hideSpinner() {
+        spinner.classList.add("hidden");
     }
 
     form?.addEventListener("submit", async (e) => {
@@ -112,6 +124,7 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
             const formData = new FormData(form);
             formData.set("cf-turnstile-response", token);
 
+            showSpinner();
             const { error } = await actions.submitContact(formData);
             if (error) {
                 showStatus(error.message, false);
@@ -120,6 +133,7 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
                 showStatus("Thanks! We'll be in touch.", true);
             }
         } finally {
+            hideSpinner();
             button.disabled = false;
         }
     });
