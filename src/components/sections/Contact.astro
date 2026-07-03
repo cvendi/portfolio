@@ -46,9 +46,9 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
         <div
             class="cf-turnstile"
             data-sitekey={sitekey}
+            data-execution="execute"
             data-callback="onTurnstileSuccess"
             data-error-callback="onTurnstileError"
-            data-expired-callback="onTurnstileExpired"
         >
         </div>
 
@@ -65,15 +65,20 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 
 <script is:inline>
     // Turnstile callbacks must be global, so this script is `is:inline`.
-    window.onTurnstileSuccess = () => {
-        document.getElementById("submit-button").disabled = false;
-    };
-    window.onTurnstileError = () => {
-        document.getElementById("submit-button").disabled = true;
-    };
-    window.onTurnstileExpired = () => {
-        document.getElementById("submit-button").disabled = true;
-    };
+    let resolveToken;
+    window.onTurnstileSuccess = (token) => resolveToken?.(token);
+    window.onTurnstileError = () => resolveToken?.(null);
+
+    // Mints a fresh, unexpired token at call time (execution="execute"), so a
+    // form that has been idle can't submit a stale token.
+    window.getTurnstileToken = () =>
+        new Promise((resolve) => {
+            if (!window.turnstile) return resolve(null);
+            const widget = document.querySelector(".cf-turnstile");
+            resolveToken = resolve;
+            window.turnstile.reset(widget); // clear any previous/expired token
+            window.turnstile.execute(widget); // run the (invisible) challenge now
+        });
 </script>
 
 <script>
@@ -97,16 +102,24 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
         button.disabled = true;
 
         try {
-            const { error } = await actions.submitContact(new FormData(form));
+            const token = await (window as any).getTurnstileToken();
+            if (!token) {
+                showStatus("Verification failed, please try again.", false);
+                return;
+            }
+
+            const formData = new FormData(form);
+            formData.set("cf-turnstile-response", token);
+
+            const { error } = await actions.submitContact(formData);
             if (error) {
                 showStatus(error.message, false);
             } else {
                 form.reset();
-                showStatus("Thanks! I'll be in touch.", true);
+                showStatus("Thanks! We'll be in touch.", true);
             }
         } finally {
             button.disabled = false;
-            window.turnstile?.reset();
         }
     });
 </script>
