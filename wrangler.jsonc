@@ -1,0 +1,12 @@
+{
+  "name": "portfolio",
+  "compatibility_date": "2026-04-15",
+  "compatibility_flags": [],
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "75cee5137c1c439b82f235325e146f86",
+    },
+  ],
+  "observability": { "enabled": true },
+}
