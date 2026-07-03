@@ -9,6 +9,8 @@ import {
     AlertTitle,
 } from "@/components/starwind/alert";
 import { Send } from "@lucide/astro";
+import Check from "@tabler/icons/outline/circle-check.svg";
+import Error from "@tabler/icons/outline/circle-x.svg";
 
 const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 ---
@@ -71,7 +73,11 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
             <Spinner id="spinner" class="size-8 hidden" />
 
             <Alert id="status-alert" class="hidden self-stretch w-full">
-                <AlertTitle id="status-title" />
+                <AlertTitle id="status-title">
+                    <Check id="status-icon-success" class="hidden" />
+                    <Error id="status-icon-error" class="hidden" />
+                    <span id="status-title-text"></span>
+                </AlertTitle>
                 <AlertDescription id="status-msg" />
             </Alert>
         </div>
@@ -102,7 +108,9 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 
     const form = document.querySelector<HTMLFormElement>("#contact-form");
     const statusType = document.querySelector("#status-alert");
-    const statusTitle = document.querySelector("#status-title");
+    const statusTitleText = document.querySelector("#status-title-text");
+    const statusIconSuccess = document.querySelector("#status-icon-success");
+    const statusIconError = document.querySelector("#status-icon-error");
     const statusMessage = document.querySelector("#status-msg");
     const button = document.getElementById(
         "submit-button",
@@ -113,7 +121,10 @@ const sitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
         if (!statusType) return;
         statusType.classList.remove("hidden");
         statusType.className = alert({ variant: ok ? "success" : "error" });
-        if (statusTitle) statusTitle.textContent = ok ? "Done!" : "Error";
+        statusIconSuccess?.classList.toggle("hidden", !ok);
+        statusIconError?.classList.toggle("hidden", ok);
+        if (statusTitleText)
+            statusTitleText.textContent = ok ? "Done!" : "Error";
         if (statusMessage) statusMessage.textContent = msg;
     }
 
