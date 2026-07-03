@@ -55,6 +55,10 @@
     {
       "name": "spinner",
       "version": "1.0.2"
+    },
+    {
+      "name": "alert",
+      "version": "1.3.2"
     }
   ]
 }
